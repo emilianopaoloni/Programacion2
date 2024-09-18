@@ -1,0 +1,61 @@
+public class Persona {
+    private String nomYape;
+    private int dni;
+    private int edad;
+    private double sueldo;
+    
+
+    public Persona(String nomYape, int dni, int edad, double sueldo){
+        this.nomYape = nomYape;
+        this.dni = dni; 
+        this.edad = edad; 
+        this.sueldo = sueldo; 
+    }
+    
+    public Persona(){
+     
+    }
+
+    public String getNomYape() {
+        return nomYape;
+    }
+    
+     public int getDni() {
+        return dni;
+    }
+
+      public int getEdad() {
+        return edad;
+    }
+
+       public int getSueldo() {
+        return sueldo;
+    }
+
+    public void setNomYape(String nomYape) {
+        this.nomYape = nomYape;
+    }
+
+    public int setEdad(int edad) {
+        this.edad = edad;
+    }
+    
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+   
+      public void setSueldo(double sueldo) {
+      this.sueldo = sueldo;
+    }
+
+    
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
+    }
+    
+    public String toString(){
+        return ("propietario: "+nomYape+", dni: "+dni", edad: "+edad+", sueldo: "+sueldo);
+    }
+    
+    
+}

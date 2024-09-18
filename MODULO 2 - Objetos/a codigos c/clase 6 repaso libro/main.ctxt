@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=main
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=vecE\ diml
+comment2.target=void\ imprimirListado(Ejemplar[],\ int)
+comment3.params=in
+comment3.target=Responsable\ leerResponsable(java.util.Scanner)
+comment4.params=in
+comment4.target=Ejemplar\ leerEjemplar(java.util.Scanner)
+numComments=5

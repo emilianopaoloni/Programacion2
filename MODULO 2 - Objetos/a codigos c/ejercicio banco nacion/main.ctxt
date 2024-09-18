@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=main
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=vecV\ diml
+comment2.target=void\ imprimirCuentas(CuentaBancaria[],\ int)
+comment3.params=in
+comment3.target=Propietario\ leerPropietario(java.util.Scanner)
+comment4.params=in
+comment4.target=CuentaBancaria\ leerCuentaBancaria(java.util.Scanner)
+numComments=5

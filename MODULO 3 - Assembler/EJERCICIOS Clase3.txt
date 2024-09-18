@@ -1,0 +1,318 @@
+Clase 3
+
+ej1
+
+ORG 1000H
+NUM1_L DW 49152
+NUM1_H DW 0
+NUM2_L DW 32768
+NUM2_H DW 0
+
+       	ORG 2000H
+    MOV AX,NUM1_L
+    MOV DX,NUM2_L
+    ADD DX, AX
+    
+    MOV AX, NUM1_H
+    MOV CX, NUM2_H
+    
+    ADC CX, AX
+    
+            
+FINAL:	HLT
+		END
+
+----------------------------------------------
+
+
+EJ2
+
+ORG 1000H
+NUM1_L DW 49152
+NUM1_H DW 0
+NUM2_L DW 32768
+NUM2_H DW 0
+
+
+ORG 3000H
+SUM32:   
+    ADD DX, AX
+    
+    ADC CX, BX
+    
+    RET
+
+       	ORG 2000H
+    MOV AX,NUM1_L
+    MOV DX,NUM2_L
+    MOV BX, NUM1_H
+    MOV CX, NUM2_H
+    CALL SUM32
+  
+            
+FINAL:	HLT
+		END
+
+
+----------------------------------------------
+
+
+EJ 3
+
+ORG 1000H
+NUM1_L DW 49152
+NUM1_H DW 0
+NUM2_L DW 32768
+NUM2_H DW 0
+
+
+ORG 3000H
+SUM32:   
+    PUSH BX
+    MOV BX,DX
+    MOV DX,[BX]
+    MOV BX,AX
+    MOV AX,[BX]
+    ADD DX, AX
+    MOV BX, CX
+    MOV CX, [BX]
+    POP BX
+    MOV BX, [BX]
+    
+    ADC CX, BX
+    
+    RET
+
+       	ORG 2000H
+    MOV AX,OFFSET NUM1_L
+    MOV DX,OFFSET NUM2_L
+    MOV BX, OFFSET NUM1_H
+    MOV CX, OFFSET NUM2_H
+    CALL SUM32
+  
+            
+FINAL:	HLT
+		END
+
+----------------------------------------------
+
+
+EJ 4:
+
+ORG 1000H
+NUM1 DB 27
+NUM2 DB 4
+
+
+
+ORG 3000H
+RESTO: 
+         MOV CL,AH
+         SUB AH,AL
+         JNS RESTO
+         JMP FIN
+    FIN:RET
+
+       	ORG 2000H
+    MOV AH,NUM1
+    MOV AL,NUM2
+    MOV CH,0
+  
+    CALL RESTO
+  
+            
+FINAL:	HLT
+		END
+
+
+---------------------------------------------- 
+
+
+ej5:
+
+ORG 1000H
+VOC DB "AEIOUaeiou"
+car DB "j"
+
+
+
+
+ORG 3000H
+ES_VOCAL:
+         
+         MOV AL, [BX]
+         CMP AL, AH
+         JZ TRUE 
+         MOV CL,00H ; EL FLAG NO DA 0 
+         INC BX
+         DEC CH
+         JNZ ES_VOCAL
+         JMP FIN
+
+    TRUE: MOV CL,0FFH
+    JMP FIN
+    
+    FIN:RET
+
+       	ORG 2000H
+    MOV AH,car
+    MOV CX,0
+    MOV CH,OFFSET car- OFFSET VOC  ;dimension
+    MOV BX, OFFSET VOC
+    CALL ES_VOCAL
+  
+            
+FINAL:	HLT
+		END
+
+
+----------------------------------------------
+
+ej6
+
+ORG 1000H
+CANTV DB 0
+VOC DB "AEIOUaeiou"
+CADENA DB "AeIl"
+FIN DB "?"
+
+
+
+
+ORG 3000H
+
+ES_VOCAL:
+         
+         MOV AL, [BX]
+         CMP AL, AH 
+         JZ TRUE 
+         MOV CL,00H ; EL FLAG NO DA 0 
+         INC BX
+         DEC CH
+         JNZ ES_VOCAL
+         JMP FIN2
+
+    TRUE: MOV CL,0FFH
+    JMP FIN2
+    
+    FIN2:RET
+
+
+
+VOCALES:
+MOV CH,OFFSET CADENA- OFFSET VOC  ;dimension DE TABLA VOCALES
+MOV AH, [BX]
+INC BX
+PUSH BX
+MOV BX ,OFFSET VOC
+CALL ES_VOCAL
+CMP CL,00H
+JNZ SUMA
+CONT: POP BX
+DEC DL
+JNZ VOCALES
+JMP FIN1
+
+
+SUMA: INC DH 
+JMP CONT
+
+FIN1: RET
+
+       	ORG 2000H
+    MOV CX,0
+    MOV DH,0
+    MOV DL,OFFSET FIN- OFFSET CADENA  ;dimension DE LA CADENA
+    MOV BX, OFFSET CADENA
+    
+    CALL VOCALES
+  
+            
+FINAL:	
+MOV CANTV,DH
+HLT
+		END
+
+----------------------------------------------
+
+ej7
+
+
+a)	¿Qué hace la subrutina?
+    suma el numero AX y sus anteriores hasta llegar a 0, el resultado lo almacena en CX
+
+b)	¿Cuál será el valor final de CX?
+
+CX=6
+
+
+c)	Dibujar las posiciones de memoria de la pila, anotando que valores va tomando
+
+d)	¿Cuál será la limitación para determinar el valor más grande que se le puede pasar a la subrutina a través de AX?
+
+limitacion: que AX no supere los 16 bits
+
+
+EJ EXTRA:
+
+ORG 1000H
+TABLA_A DB 1, 2, 5, 4, 7
+TABLA_B DB 2, 3, 4, 5, 7
+FIN DB "?"
+SUMA5 DB 0; SUMA LOS VALORES MAYORES A 5 DE LA TABLA B
+
+
+
+
+ORG 3000H
+
+REEMPLAZAR:
+
+        MOV BX, CX    ;CX POR REFERENCIA
+        MOV CX, [BX]
+        CMP CX, AX   ;AX POR VALOR
+        JS TRUE
+        JMP FIN
+        
+    TRUE: MOV AX,CX
+    JMP FIN
+    
+    FIN:RET
+
+RECORRER:
+      MOV CX, OFFSET TABLA_B ;DIRECCION TABLA B
+      INC CX        ;PROX ELEMENTO DE LA TABLA B
+      ACA:PUSH CX     ;LO GUARDO EN PILA
+      MOV BX, AX
+      PUSH AX
+      MOV AX, [BX] ;PRIMER VALOR TABLA A
+      PUSH AX
+      CALL REEMPLAZAR   ; S MANDA CX POR REF Y AX POR VALOR
+      MOV CX,AX   ;VALOR ACTUALIZADO 
+      POP AX   ;VALOR VIEJO
+      CMP AX,CX
+      JNZ CAMBIO
+CONT: POP AX
+      INC AX
+      POP CX
+      
+      
+    
+
+
+CAMBIO: MOV [BX],CX    ;CABIO LA TABLA A
+JMP CONT
+
+       	ORG 2000H
+    MOV AX,OFFSET TABLA_A
+    MOV DH OFFSET TABLA_B- OFFSET TABLA_A ;guarda dimL de tabla_A
+    MOV DL OFFSET FIN- OFFSET TABLA_B; dimL tabla B
+    
+    
+    CALL REEMPLAZAR
+  
+            
+FINAL:	
+MOV CANTV,DH
+HLT
+		END

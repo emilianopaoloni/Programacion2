@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Propietario
+comment1.params=nomYape\ CIT
+comment1.target=Propietario(java.lang.String,\ int)
+comment2.params=
+comment2.target=Propietario()
+comment3.params=
+comment3.target=java.lang.String\ getNomYape()
+comment4.params=
+comment4.target=int\ getCIT()
+comment5.params=nomYape
+comment5.target=void\ setNomYape(java.lang.String)
+comment6.params=CIT
+comment6.target=void\ setCIT(int)
+comment7.params=
+comment7.target=java.lang.String\ toString()
+numComments=8

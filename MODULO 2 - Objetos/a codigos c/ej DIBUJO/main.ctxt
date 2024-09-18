@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=main
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=in
+comment2.target=Dibujo\ leerDibujo(java.util.Scanner)
+comment3.params=in
+comment3.target=Punto\ leerPunto(java.util.Scanner)
+numComments=4

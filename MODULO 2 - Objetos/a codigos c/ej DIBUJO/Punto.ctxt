@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Punto
+comment1.params=
+comment1.target=Punto()
+comment2.params=x\ y
+comment2.target=Punto(int,\ int)
+comment3.params=
+comment3.target=int\ getX()
+comment4.params=
+comment4.target=int\ getY()
+comment5.params=x
+comment5.target=void\ setX(int)
+comment6.params=y
+comment6.target=void\ setY(int)
+comment7.params=dx\ dy
+comment7.target=void\ desplazar(int,\ int)
+comment8.params=x\ y
+comment8.target=void\ cambiarPos(int,\ int)
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10

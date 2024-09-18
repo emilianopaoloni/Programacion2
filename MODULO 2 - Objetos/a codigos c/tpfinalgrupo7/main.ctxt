@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=main
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=s
+comment2.target=void\ imprimirShow(Show)
+comment3.params=in
+comment3.target=Comprador\ leerComprador(java.util.Scanner)
+comment4.params=in
+comment4.target=Show\ leerShow(java.util.Scanner)
+comment5.params=in
+comment5.target=Localidad\ leerLocalidad(java.util.Scanner)
+numComments=6

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Vip
+comment1.params=id\ fila\ butaca\ platea\ comprador\ metodP\ especial\ costoV
+comment1.target=Vip(int,\ int,\ int,\ java.lang.String,\ Comprador,\ java.lang.String,\ boolean,\ double)
+comment2.params=
+comment2.target=Vip()
+comment3.params=
+comment3.target=boolean\ getEspecial()
+comment4.params=
+comment4.target=double\ getcostoV()
+comment5.params=especial
+comment5.target=void\ setEspecial(boolean)
+comment6.params=costoV
+comment6.target=void\ setcostoV(double)
+comment7.params=
+comment7.target=double\ calcularGasto()
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9

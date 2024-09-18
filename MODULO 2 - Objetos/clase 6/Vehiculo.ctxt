@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Vehiculo
+comment1.params=propietario\ a\u00F1oF\ importeB
+comment1.target=Vehiculo(Propietario,\ int,\ double)
+comment10.params=
+comment10.target=double\ calcularImporte()
+comment2.params=
+comment2.target=Vehiculo()
+comment3.params=
+comment3.target=Propietario\ getPropietario()
+comment4.params=
+comment4.target=int\ getA\u00F1oF()
+comment5.params=
+comment5.target=double\ getImporteB()
+comment6.params=propietario
+comment6.target=void\ setPropietario(Propietario)
+comment7.params=a\u00F1oF
+comment7.target=void\ setA\u00F1oF(int)
+comment8.params=importeB
+comment8.target=void\ setImporteB(double)
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=11

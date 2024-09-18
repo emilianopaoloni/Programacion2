@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Dibujo
+comment1.params=
+comment1.target=Dibujo()
+comment10.params=
+comment10.target=boolean\ estaLleno()
+comment11.params=
+comment11.target=void\ mostrar()
+comment2.params=titulo\ autor\ cantF
+comment2.target=Dibujo(java.lang.String,\ java.lang.String,\ int)
+comment3.params=
+comment3.target=java.lang.String\ getTitulo()
+comment4.params=
+comment4.target=java.lang.String\ getAutor()
+comment5.params=
+comment5.target=int\ getCantF()
+comment6.params=titulo
+comment6.target=void\ setTitulo(java.lang.String)
+comment7.params=autor
+comment7.target=void\ setAutor(java.lang.String)
+comment8.params=cantF
+comment8.target=void\ setCantF(int)
+comment9.params=f
+comment9.target=void\ agregarFigura(Figura)
+numComments=12

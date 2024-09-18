@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Comprador
+comment1.params=nomYape\ dni
+comment1.target=Comprador(java.lang.String,\ int)
+comment2.params=
+comment2.target=Comprador()
+comment3.params=
+comment3.target=java.lang.String\ getNomYape()
+comment4.params=
+comment4.target=int\ getDni()
+comment5.params=nomYape
+comment5.target=void\ setNomYape(java.lang.String)
+comment6.params=dni
+comment6.target=void\ setDni(int)
+comment7.params=
+comment7.target=java.lang.String\ toString()
+numComments=8

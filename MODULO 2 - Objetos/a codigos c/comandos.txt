@@ -1,0 +1,26 @@
+==	Igualdad	a == b
+!=	Distinto	a != b
+<	Menor que	a < b
+>	Mayor que	a > b
+<=	Menor o igual que	a <= b
+>=	Mayor o igual que	a >= b
+
+++	Incremento
+--	Decremento
+
+&&	AND lógico
+||	OR lógico
+
++	Suma	a + b
+-	Resta	a - b
+*	Multiplicación	a * b
+/	División	a / b
+%	Módulo	a % b
+
+
+-compareTo()----> ej: cadena1.compareTo(cadena2)
+Para comparar si un String es mayor o menor a otro.si el número que devuelve es menor a cero la cadena1 es menor 
+a la cadena2, en cambio, si el número es mayor a cero la cadena1 es más grande que la cadena2.(le resta a la cad1
+la cad2)
+
+-cadena1.equals("cadena2") -----> para ver si dos cadenas String son iguales

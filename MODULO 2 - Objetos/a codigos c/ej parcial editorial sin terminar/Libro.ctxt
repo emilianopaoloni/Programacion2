@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Libro
+comment1.params=nombre\ isbn\ precio\ paginas\ fechaPublicacion\ autor
+comment1.target=Libro(java.lang.String,\ java.lang.String,\ double,\ int,\ Fecha,\ Autor)
+comment10.params=paginas
+comment10.target=void\ setpaginas(int)
+comment11.params=
+comment11.target=double\ calcularDescuento()
+comment12.params=
+comment12.target=java.lang.String\ toString()
+comment2.params=
+comment2.target=Libro()
+comment3.params=
+comment3.target=java.lang.String\ getNombre()
+comment4.params=
+comment4.target=java.lang.String\ getIsbn()
+comment5.params=
+comment5.target=double\ getPrecio()
+comment6.params=
+comment6.target=int\ getPaginas()
+comment7.params=nombre
+comment7.target=void\ setNombre(java.lang.String)
+comment8.params=isbn
+comment8.target=void\ setIsbn(java.lang.String)
+comment9.params=precio
+comment9.target=void\ setPrecio(double)
+numComments=13

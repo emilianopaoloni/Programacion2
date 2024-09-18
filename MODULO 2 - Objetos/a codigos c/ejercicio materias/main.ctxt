@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=main
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=vecV\ diml
+comment2.target=void\ imprimirMaterias(MateriaAprobada[],\ int)
+comment3.params=in
+comment3.target=Alumno\ leerAlumno(java.util.Scanner)
+comment4.params=in
+comment4.target=Fecha\ leerFecha(java.util.Scanner)
+comment5.params=in
+comment5.target=MateriaAprobada\ leerMateriaAprobada(java.util.Scanner)
+numComments=6

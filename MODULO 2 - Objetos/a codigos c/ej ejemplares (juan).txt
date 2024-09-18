@@ -1,0 +1,331 @@
+public class Responsable {
+    private String nomYape;
+    private int DNI;
+    
+    public Responsable(String nomYape, int DNI){
+        this.nomYape = nomYape;
+        this.DNI = DNI;
+    }
+    
+    public Responsable(){
+     
+    }
+
+    public int getDNI() {
+        return DNI;
+    }
+
+    public String getNomYape() {
+        return nomYape;
+    }
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }
+
+    public void setNomYape(String nomYape) {
+        this.nomYape = nomYape;
+    }
+    
+    public String toString(){
+        String aux; 
+        aux = "Mi nomYape es " + nomYape + ", mi DNI es " + DNI ;
+        return aux;
+    }
+        
+}
+
+/////////////////////////////////////////////////////////////////
+
+import java.util.Random;
+
+public class Generador{
+
+    private static int nro_actual_volumen = (new Random()).nextInt(50);
+
+    //Retorna el nro de volumen a registrar 
+    //Método de clase (no se necesita una instancia de Generador)
+    public static int getNroVolumen(){
+        nro_actual_volumen++;
+        return nro_actual_volumen;
+    } 
+}
+/////////////////////////////////////////////////////////////////////////////////
+
+public class Libro extends Ejemplar {
+    private String titulo;
+    private int cantC;
+    private boolean deBolsillo; 
+
+    
+    public Libro(String resumen, int id, int cantP,Responsable r,String titulo, int cantC,boolean deBolsillo){
+        super( resumen, id,  cantP, r);
+        this.titulo = titulo;
+        this.cantC = cantC;
+        this.deBolsillo = deBolsillo;
+    }
+    
+    public Libro (){
+     
+    }
+
+    public String getTitulo() { 
+        return titulo;
+    }
+    
+    public boolean getDeBolsillo() { 
+        return deBolsillo;
+    }
+
+    public int getCantC() { 
+        return cantC;
+    }
+
+    public void setTitulo(String titulo) { 
+        this.titulo = titulo;
+    }
+    
+    public void setDeBolsillo(boolean deBolsillo) { 
+        this.deBolsillo = deBolsillo;
+    }
+
+    public void setCantC(int cantC) {
+        this.cantC = cantC;
+    } 
+    
+    public void publicar(int añoActual) { 
+        super.setAñoP(añoActual);
+    }
+    
+    public String toString(){
+        String aux = super.toString()+", codigo ID: "+super.getId()+", titulo :"+titulo+", nombre del responsable: "+getNombreResponsable();  
+        
+        if (super.getAñoP()!=0){
+            if (deBolsillo == true)
+            aux = super.toString()+", codigo ID: "+super.getId()+", titulo :"+titulo+", nombre del responsable: "+getNombreResponsable()+" -de Bolsillo";
+        }
+        return aux;  
+    }
+}
+
+///////////////////////////////////////////////////////////////
+
+public class Revista extends Ejemplar {
+    private String nombre;
+    private Generador numV;    //lo genera la clase generador
+    private int cantA; 
+
+    
+    public Revista(String resumen, int id, int cantP,Responsable r,String nombre, int cantA){
+        super( resumen,  id,  cantP, r);
+        this.nombre = nombre;
+        this.cantA = cantA;
+    }
+    
+    public Revista (){
+     
+    }
+
+    public String getNombre() { 
+        return nombre;
+    }
+    
+    public int getCantA() { 
+        return cantA;
+    }
+
+    public Generador getNumV() { 
+        return numV;
+    }
+
+    public void setNombre(String nombre) { 
+        this.nombre = nombre;
+    }
+    
+    public void setCantA(int cantA) { 
+        this.cantA = cantA;
+    }
+
+    public void setnumV(Generador numV) {
+        this.numV = numV;
+    } 
+    
+    public void publicar(int añoActual) { 
+        super.setAñoP(añoActual);
+    }
+    
+    public String toString(){
+        String aux;
+        if (super.getAñoP()==0){
+            aux = super.toString()+", nombre :"+nombre+",cant articulos: "+cantA;
+        }
+        else{
+            aux = super.toString()+", nombre :"+nombre+",cant articulos: "+cantA+", num de volume: "+numV.getNroVolumen();
+        }
+        return aux;  
+    }
+
+    
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+public abstract class Ejemplar {
+    private String resumen; 
+    private int añoP;          //si aún no fue publicado este valor es cero
+    private int id;
+    private int cantP;
+    private Responsable r;
+
+    
+    public Ejemplar(String resumen, int id, int cantP,Responsable r){
+        this.resumen = resumen;
+        this.añoP = 0; 
+        this.id= id;
+        this.cantP=cantP;
+        this.r=r;
+    }
+    
+    public Ejemplar (){
+     
+    }
+
+    public int getId() {
+        return id;
+    }
+    
+    public Responsable getResponsable() {
+        return r;
+    }
+    
+    public String getNombreResponsable() {
+        return r.getNomYape();
+    }
+
+    public int getCantP() {
+        return cantP;
+    }
+ 
+    public int getAñoP() {
+        return añoP;
+    }
+
+    public String getResumen() {
+        return resumen;
+    }
+
+    public void setResponsable(Responsable r) {
+        this.r = r;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCantP(int cantP) {
+        this.cantP = cantP;
+    }
+
+    public void setAñoP(int añoP) {
+        this.añoP = añoP;
+    }
+
+    public void setResumen(String resumen) {
+        this.resumen = resumen;
+    }
+    
+    public abstract void publicar(int añoActual);
+    
+    public String toString(){
+        return "resumen: "+resumen+" ,año de publicacion: "+ añoP+",responsable: "+r.toString();  
+    }
+    
+    
+    
+}
+
+/////////////////////////////////////////////////////////////////////     MAIN
+
+import java.util.Scanner; 
+    
+public class ProgramaEditorial {
+public static final int DIMF= 1000;            //dim propuesta por mi
+public static void ProgramaEditorial (String[] args){
+    Ejemplar [] vecE = new Ejemplar [DIMF];
+    int dimL = 0;
+    Scanner in = new Scanner(System.in);
+    System.out.println("Desea ingresar un Ejemplar? (SI/NO): "); 
+    String fin= in.next();
+    while (fin.equals("SI") && dimL < DIMF){
+        vecE[dimL] = leerEjemplar (in);                /*le crago el objeto y aumento la dimL*/   
+        System.out.println("ingrese año actual para publicar el ejemplar:");
+        int añoActual = in.nextInt();
+        vecE[dimL].publicar(añoActual);
+        dimL++;
+        System.out.println();
+        System.out.println("Desea ingresar otro Ejemplar? (SI/NO):"); 
+        fin = in.next();
+    }
+    System.out.println("HA FINALIZADO LA CARGA DE EJEMPLARES");
+    imprimirListado(vecE,dimL);
+    in.close();
+}
+
+
+    private static void imprimirListado(Ejemplar [] vecE,int diml){
+        System.out.println("Lista de todos los ejemplares");
+        for (int i=0; i<diml; i++){
+            System.out.println(vecE[i]); 
+        }
+    }
+    
+    private static Responsable leerResponsable(Scanner in){
+        String nomYape; int DNI; Responsable r;
+        in.nextLine();
+        System.out.println("nombre y apellido: ");
+        nomYape =  in.nextLine(); 
+        System.out.println("DNI: "); 
+        DNI = in.nextInt();
+        return r = new Responsable( nomYape, DNI);
+    }
+
+    private static Ejemplar leerEjemplar(Scanner in){  
+        Ejemplar e = null; String resumen; int id; int cantP;Responsable r;String TipoE;
+        System.out.println("resumen: ");
+        resumen = in.next(); 
+        System.out.println("id: "); 
+        id = in.nextInt();
+        System.out.println("cantP: "); 
+        cantP = in.nextInt();
+        r = leerResponsable(in);
+        
+        System.out.println("que tipo de Ejemplar desea ingresar? (LIBRO/REVISTA):");
+        TipoE = in.next();
+        
+        if (TipoE.equals("LIBRO")){
+            System.out.println("INFORMACION DEL LIBRO");
+            System.out.print ("titulo: "); 
+            String titulo = in.next();  
+            System.out.println("cantidad de caps: "); 
+            int cantC = in.nextInt();
+            System.out.println("es de bolsillo (true/false): "); 
+            boolean deBolsillo = in.nextBoolean();
+            
+            e = new Libro (  resumen,  id,  cantP, r, titulo,  cantC, deBolsillo);
+        }
+        else
+            if (TipoE.equals("REVISTA")){
+                System.out.println("INFORMACION DE LA REVISTA");
+                System.out.print ("nombre: "); 
+                String nombre = in.next(); 
+                System.out.print ("cant articulos: ");
+                int cantA = in.nextInt();
+                
+                e = new Revista ( resumen,  id,  cantP, r, nombre,  cantA);
+            }
+            
+        return e;    /*devuelvo el objeto ejemplar*/
+    }
+}  
+
+

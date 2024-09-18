@@ -1,0 +1,49 @@
+import java.util.Scanner; 
+
+public class Principal {
+    public static void main (String[] args){
+        Empleado e = new Entrenador();
+        Empleado j = new Jugador();
+        Scanner in = new Scanner(System.in);
+        j = leerJugador (in);
+        e = leerEntrenador (in);
+        System.out.println (j.toString());
+        System.out.println (e.toString());
+        
+        in.close();
+    }
+    
+    private static Jugador leerJugador(Scanner in){
+        Jugador j = null; String nombre;int edad,DNI,goles,partidos;double sueldo;
+        System.out.println("nombre del jugador: ");
+        nombre = in.next(); 
+        System.out.println("sueldo base: "); 
+        sueldo = in.nextDouble();
+        System.out.println("ingrese DNI: "); 
+        DNI = in.nextInt();
+        System.out.println("ingrese edad: "); 
+        edad = in.nextInt();
+        System.out.println("ingrese cantidad de partidos: "); 
+        partidos = in.nextInt();
+        System.out.println("ingrese cantidad de goles: "); 
+        goles = in.nextInt();
+        j = new Jugador(nombre,DNI,edad,sueldo,partidos,goles);
+        return j;
+    } 
+    
+    private static Entrenador leerEntrenador (Scanner in){
+    Entrenador e = null; String nombre;int edad,DNI,campeonatos;double sueldo;
+    System.out.println("nombre del entrenador: ");
+    nombre = in.next(); 
+    System.out.println("sueldo base: "); 
+    sueldo = in.nextDouble();
+    System.out.println("ingrese DNI: "); 
+    DNI = in.nextInt();
+    System.out.println("ingrese edad: "); 
+    edad = in.nextInt();
+    System.out.println("ingrese cantidad de campeonatos: "); 
+    campeonatos = in.nextInt();
+    e = new Entrenador (nombre,DNI,edad,sueldo,campeonatos);
+    return e;    
+    }
+}

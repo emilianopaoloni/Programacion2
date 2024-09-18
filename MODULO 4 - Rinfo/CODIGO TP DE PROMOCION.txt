@@ -1,0 +1,147 @@
+programa ejPROMOCION
+procesos
+  proceso juntarFloresS(ES cant: numero ES hayFlor: boolean)   {para sembradores} 
+  comenzar
+    si (HayFlorEnLaEsquina)
+      tomarFlor
+      cant:=cant+1
+    sino 
+      hayFlor:= F
+  fin
+  proceso juntarFloresC(ES cant: numero)    {para cosechadores(sin boolean)}
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      cant:=cant+1
+  fin
+  proceso Limpiar(ES cant: numero) 
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      cant:=cant+1
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      cant:=cant+1
+  fin
+areas
+  areaC : AreaPC(15,15,75,40)
+  areaD : AreaPC(100,1,100,1)
+  areaS1: AreaP(99,99,99,99)
+  areaS2: AreaP(99,100,99,100)
+  areaC1 : AreaP(6,13,6,13)
+  areaC2: AreaP(8,13,8,13)
+  areaC3 : AreaP(10,13,10,13)
+  areaJ : AreaP(50,1,50,1)
+  areaAv: AreaPC(1,1,1,100)
+robots  
+  robot jefe
+  variables
+    Av, Ca, cantMax, idMax, totalFlores, flores, id: numero
+  comenzar
+    cantMax:=0
+    totalFlores:=0
+    repetir 3
+      RecibirMensaje (flores,*)
+      totalFlores:= totalFlores+flores
+    Informar(totalFlores)
+    EnviarMensaje(1,robotS1)                {les envia el id y la orden deempezar}
+    EnviarMensaje(2,robotS2)
+    repetir 2
+      RecibirMensaje(id,*)
+      si(id=1)
+        RecibirMensaje(flores,robotS1)
+        si(flores>cantMax)
+          cantMax:=flores
+          idMax:=id
+      si(id=2)
+        RecibirMensaje(flores,robotS2)
+        si(flores>cantMax)
+          cantMax:=flores
+          idMax:=id
+    Informar(idMax)
+  fin
+{///////////////////////////////////////////}
+  robot tipoC
+  variables
+    flores, miAv, miCa, av, ca: numero   
+  comenzar
+    flores:=0
+    miAv:= PosAv
+    miCa:= PosCa
+    repetir 5
+      Random (av,15,75)         {agarra una esquina al azar dentro del rectangulo}
+      Random(ca,15,40)
+      BloquearEsquina(av,ca)
+      Pos(av,ca)
+      juntarFloresC(flores)     {junta y cuenta}
+      Pos(miAv,miCa)
+      LiberarEsquina(av,ca)
+    BloquearEsquina(100,1) 
+    Pos(100,1)
+    repetir flores
+      depositarFlor
+    Pos(miAv,miCa)
+    LiberarEsquina(100,1)
+    EnviarMensaje (flores,robotJ)        {le envio al jefe la cantidad de flores juntadas }
+  fin
+{///////////////////////////////////}
+  robot tipoS
+  variables
+    cant, miAv, miCa, av, ca, id: numero hayFlor: boolean
+  comenzar
+    cant:=0
+    av:=1
+    miAv:= PosAv
+    miCa:= PosCa
+    RecibirMensaje(id,robotJ)
+    hayFlor := V
+    mientras (hayFlor = V)
+      BloquearEsquina(100,1)
+      Pos(100,1)
+      juntarFloresS (cant, hayFlor) 
+      Random(ca,1,100)
+      BloquearEsquina(1,ca)
+      Pos(av,ca)
+      LiberarEsquina(100,1)
+      Limpiar (cant)
+      si(HayFlorEnLaBolsa)
+        depositarFlor
+      Pos(miAv,miCa)
+      LiberarEsquina(1,ca)
+    EnviarMensaje(id, robotJ)
+    EnviarMensaje(cant,robotJ) {envía al jefe cantidad de elementos juntados durante el recorrido}
+  fin
+variables 
+  robotC1: tipoC
+  robotC2: tipoC
+  robotC3: tipoC
+  robotS2: tipoS
+  robotS1: tipoS
+  robotJ: jefe
+comenzar 
+  AsignarArea(robotC1,areaC)
+  AsignarArea(robotC2,areaC)
+  AsignarArea(robotC3,areaC)
+  AsignarArea(robotC1,areaC1)
+  AsignarArea(robotC2,areaC2)
+  AsignarArea(robotC3,areaC3)
+  AsignarArea(robotS2,areaS2)
+  AsignarArea(robotS1,areaS1)
+  AsignarArea(robotC1,areaD)
+  AsignarArea(robotC2,areaD)
+  AsignarArea(robotC3,areaD)
+  AsignarArea(robotC1,areaD)
+  AsignarArea(robotC2,areaD)
+  AsignarArea(robotC3,areaD)
+  AsignarArea(robotS1,areaD)
+  AsignarArea(robotS2,areaD)
+  AsignarArea(robotJ,areaJ)
+  AsignarArea(robotS1,areaAv)
+  AsignarArea(robotS2,areaAv)
+  Iniciar(robotJ,50,1)
+  Iniciar(robotC1, 6, 13)
+  Iniciar(robotC2, 8, 13)  
+  Iniciar(robotC3, 10, 13)
+  Iniciar(robotS1, 99, 99)
+  Iniciar(robotS2, 99, 100)
+fin

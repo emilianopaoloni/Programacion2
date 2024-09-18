@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Libro
+comment1.params=resumen\ id\ cantP\ a\u00F1oP\ resp\ titulo\ capitulos\ edicionBolsillo
+comment1.target=Libro(java.lang.String,\ int,\ int,\ int,\ Responsable,\ java.lang.String,\ int,\ boolean)
+comment2.params=
+comment2.target=Libro()
+comment3.params=
+comment3.target=java.lang.String\ getTitulo()
+comment4.params=
+comment4.target=int\ getCapitulos()
+comment5.params=
+comment5.target=boolean\ getEdicionBolsillo()
+comment6.params=titulo
+comment6.target=void\ setTitulo(java.lang.String)
+comment7.params=capitulos
+comment7.target=void\ setCapitulos(int)
+comment8.params=edicionBolsillo
+comment8.target=void\ setEdicionBolsillo(boolean)
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10

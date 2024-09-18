@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Alumno
+comment1.params=nomYape\ legajo
+comment1.target=Alumno(java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=Alumno()
+comment3.params=
+comment3.target=java.lang.String\ getNomYape()
+comment4.params=
+comment4.target=java.lang.String\ getLegajo()
+comment5.params=nomYape
+comment5.target=void\ setNomYape(java.lang.String)
+comment6.params=Legajo
+comment6.target=void\ setlegajo(java.lang.String)
+comment7.params=
+comment7.target=java.lang.String\ toString()
+numComments=8

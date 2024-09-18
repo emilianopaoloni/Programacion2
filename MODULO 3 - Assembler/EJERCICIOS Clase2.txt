@@ -1,0 +1,68 @@
+clase 2:
+
+2-
+a) cl se usa para obtener dimension logica de la tabla
+offset tabla: posicion del primer elemento de la tabla
+fin: posicion del ultimo elemento + 1
+
+b) cuenta cantidad numeros menores a 11 de la tabla, el resultado lo guarda en 
+TOTAL (es ineficiente porque accede a memoria todo el tiempo)
+
+c) se estarian contando la cantidsad de 11 que hay en la tabla
+
+d) JS indica que se prende el flag S, entonces el codigo totalizaria los numeor sde la tabla mayores a 11
+
+3-
+a) simular un if else 
+ORG 1000H
+
+       	ORG 2000H
+    MOV AL,7
+    MOV CL,0
+    CMP AL, 4
+    JNZ ELSE
+    MOV BL,1
+    INC CL
+    JMP FINAL
+ELSE: MOV BL,2
+    DEC CL
+    JMP FINAL
+    
+    
+
+        
+FINAL: 	HLT
+		END
+
+b) simular un for 
+
+ORG 1000H
+
+       	ORG 2000H
+    MOV CL,0
+    MOV AX,10
+LOOP:CMP CL,10
+    JZ FINAL
+    ADD AX,AX
+    INC CL
+    JMP LOOP        
+FINAL: 	HLT
+		END
+
+4-
+ORG 1000H
+
+       	ORG 2000H
+    MOV DX,45
+    MOV CX,0
+    MOV AX, 60
+    ADD AX,DX
+LOOP:CMP AX,100
+    JZ FINAL
+    DEC AX
+    INC CL
+    JMP LOOP        
+FINAL: 	HLT
+		END
+
+

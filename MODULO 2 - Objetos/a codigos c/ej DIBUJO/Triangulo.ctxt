@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Triangulo
+comment1.params=
+comment1.target=Triangulo()
+comment10.params=
+comment10.target=double\ calcularA()
+comment11.params=
+comment11.target=java.lang.String\ dibujar()
+comment2.params=L1\ L2\ L3\ relleno\ linea\ p
+comment2.target=Triangulo(double,\ double,\ double,\ java.lang.String,\ java.lang.String,\ Punto)
+comment3.params=
+comment3.target=double\ getLado1()
+comment4.params=
+comment4.target=double\ getLado2()
+comment5.params=
+comment5.target=double\ getLado3()
+comment6.params=l1
+comment6.target=void\ setLado1(double)
+comment7.params=l2
+comment7.target=void\ setLado2(double)
+comment8.params=l3
+comment8.target=void\ setLado3(double)
+comment9.params=
+comment9.target=double\ calcularPer()
+numComments=12

@@ -1,0 +1,370 @@
+public class Propietario {
+    private String nomYape;
+    private int CUIT;
+    
+    public Propietario(String nomYape, int CUIT){
+        this.nomYape = nomYape;
+        this.CUIT = CUIT;
+    }
+    
+    public Propietario(){
+     
+    }
+
+    public int getCUIT() {
+        return CUIT;
+    }
+
+    public String getNomYape() {
+        return nomYape;
+    }
+
+    public void setCUIT(int CUIT) {
+        this.CUIT = CUIT;
+    }
+
+    public void setNomYape(String nomYape) {
+        this.nomYape = nomYape;
+    }
+    
+    public String toString(){
+        String aux; 
+        aux = "Mi nomYape es " + nomYape + ", mi CUIT es " + CUIT ;
+        return aux;
+    }
+        
+}
+
+//////////////////////////////////////////////////////////////////
+
+public class CajaAhorro extends Cuenta {
+    private boolean plazoF;
+    private int tarjetas;    //0,1,2
+    private Transaccion [] trans;     //vec de clases 
+    private int dimL;
+    
+    public CajaAhorro(String alias, int CBU, double dinero,Propietario p,boolean plazoF, int tarjetas){
+        super( alias,  CBU,  dinero, p);
+        this.plazoF = plazoF;
+        this.tarjetas = tarjetas;
+        trans = new Transaccion [5];
+        for (int i=0;i<5;i++){
+            trans[i] = null;
+        }
+        dimL = 0;
+    }
+    
+    public CajaAhorro(){
+     
+    }
+
+    public int getTarjetas() {
+        return tarjetas;
+    }
+
+    public boolean getPlazoF() {
+        return plazoF;
+    }
+
+    public void setTarjetas(int tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+
+    public void setPlazoF(boolean plazoF) {
+        this.plazoF = plazoF;
+    }
+    
+    public void agregarTrans(String concepto, double monto) {
+         Transaccion t = new Transaccion (concepto,monto);
+         trans [dimL] = t;
+         dimL++;
+    }
+    
+    public double calcularMonto (){
+        double tot = 0;       // aca sumo todo lo que cobra el banco
+        double auxD= super.getDinero();
+        if (plazoF == true ){
+            tot= auxD*0.02;     // le sumo el 2% del dinero
+        }
+        if (tarjetas ==2){
+            tot=auxD+1800;
+        }
+        else if(tarjetas == 1){
+            tot=auxD+1000;
+        }
+        for (int i=0;i<5;i++){
+            if (trans [i].getConcepto().equals("“DEB.CPRA.VTA")){
+               double monto= trans [i].getMonto();
+               monto += monto * 0.3;      //aumento y despues aumento eso
+               monto += monto * 0.35; 
+               tot += monto;          //le sumo los impuestos
+            }
+        }
+        return tot;   //retorno el total a cobrar por el banco
+    }
+    
+    public String toString(){
+        String aux; 
+        aux = "Mi plazoF es " + plazoF + ", mi tarjetas es " + tarjetas ;
+        return aux;
+    }
+        
+}
+
+/////////////////////////////////////////////////////////
+
+public class CuentaCorriente extends Cuenta {
+    private int cantCheq;
+    private int limite;
+    
+    public CuentaCorriente(String alias, int CBU, double dinero,Propietario p,int cantCheq, int limite){
+        super( alias,  CBU,  dinero, p);
+        this.cantCheq = cantCheq;
+        this.limite = limite;
+    }
+    
+    public CuentaCorriente(){
+     
+    }
+
+    public int getLimite() {
+        return limite;
+    }
+
+    public int getCantCheq() {
+        return cantCheq;
+    }
+
+    public void setLimite(int limite) {
+        this.limite = limite;
+    }
+
+    public void setCantCheq(int cantCheq) {
+        this.cantCheq = cantCheq;
+    }
+    
+    public double calcularMonto (){
+        double tot = 0;       // aca sumo todo lo que cobra el banco
+        double auxD= super.getDinero();
+        if (auxD>=10000){
+            tot += (auxD*0.005)*cantCheq;  // 0.5% del saldo por la cant de cheq
+        }
+        else {
+            tot += (limite*0.002)*cantCheq;
+        }
+        return tot;                //sin cond
+    }
+    
+    public String toString(){
+        String aux; 
+        aux = "Mi cantCheq es " + cantCheq + ", mi limite es " + limite ;
+        return aux;
+    }
+        
+}
+
+//////////////////////////////////////////////////////////
+
+public class Transaccion {
+    private String concepto;
+    private double monto;
+    
+    public Transaccion(String concepto, double monto){
+        this.concepto = concepto;
+        this.monto = monto;
+    }
+    
+    public Transaccion(){
+     
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public String getConcepto() {
+        return concepto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
+    }
+    
+    public String toString(){
+        String aux; 
+        aux = "Mi concepto es " + concepto + ", mi monto es " + monto ;
+        return aux;
+    }
+        
+}
+
+/////////////////////////////////////////////////
+
+public abstract class Cuenta {
+    private String alias; 
+    private int numC;          //si aún no fue publicado este valor es cero
+    private int CBU;
+    private double dinero;
+    private Propietario p;
+
+    
+    public Cuenta(String alias, int CBU, double dinero,Propietario p){
+        this.alias = alias;
+        this.numC = numC; 
+        this.CBU= CBU;
+        this.dinero=dinero;
+        this.p=p;
+    }
+    
+    public Cuenta (){
+     
+    }
+
+    public int getCBU() {
+        return CBU;
+    }
+    
+    public Propietario getPropietario() {
+        return p;
+    }
+    
+    public String getNombrePropietario() {
+        return p.getNomYape();
+    }
+
+    public double getDinero() {
+        return dinero;
+    }
+ 
+    public int getNumC() {
+        return numC;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setPropietario(Propietario p) {
+        this.p = p;
+    }
+    
+    public void setCBU(int CBU) {
+        this.CBU = CBU;
+    }
+
+    public void setDinero(double dinero) {
+        this.dinero = dinero;
+    }
+
+    public void setNumC(int numC) {
+        this.numC = numC;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+    
+    //public abstract void publicar(int añoActual);
+    
+    public String toString(){
+        return "alias: "+alias+" ,año de publicacion: "+ numC+",Propietario: "+p.toString();  
+    }
+    
+}
+
+/////////////////////////////////////// MAIN
+
+import java.util.Scanner; 
+    
+public class ProgramaEditorial {
+public static final int DIMF= 4;            //dim propuesta por enunciado
+public static void ProgramaEditorial (String[] args){
+    Cuenta [] vecC = new Cuenta [DIMF];
+    int dimL = 0;
+    Scanner in = new Scanner(System.in);
+    System.out.println("Desea ingresar una Cuenta? (SI/NO): "); 
+    String fin= in.next();
+    while (fin.equals("SI") && dimL < DIMF){      //uso un while para poder meter menos pero iria un for i
+        vecC[dimL] = leerCuenta (in);                /*le crago el objeto y aumento la dimL*/   
+        dimL++;
+        System.out.println();
+        System.out.println("Desea ingresar otra Cuenta? (SI/NO):"); 
+        fin = in.next();
+    }
+    System.out.println("HA FINALIZADO LA CARGA DE Cuentas");
+    imprimirListado(vecC,dimL);
+    in.close();
+}
+
+
+    private static void imprimirListado(Cuenta [] vecC,int diml){
+        System.out.println("Lista de todas las cuentas");
+        for (int i=0; i<diml; i++){
+            System.out.println(vecC[i]); 
+        }
+    }
+    
+    private static Propietario leerPropietario(Scanner in){
+        String nomYape; int CUIT; Propietario p;
+        in.nextLine();
+        System.out.println("nombre y apellido: ");
+        nomYape =  in.nextLine(); 
+        System.out.println("CUIT: "); 
+        CUIT = in.nextInt();
+        return p = new Propietario( nomYape, CUIT);
+    }
+
+    private static Cuenta leerCuenta(Scanner in){  
+        Cuenta c = null; String alias; int CBU; double dinero;Propietario p;String TipoE;
+        CajaAhorro cA = null;
+        System.out.println("alias: ");
+        alias = in.next(); 
+        System.out.println("CBU: "); 
+        CBU = in.nextInt();
+        System.out.println("dinero: "); 
+        dinero = in.nextDouble();
+        p = leerPropietario(in);
+        
+        System.out.println("que tipo de Cuenta desea ingresar? (CORRIENTE/AHORRO):");
+        TipoE = in.next();
+        
+        if (TipoE.equals("CORRIENTE")){
+            System.out.println("INFORMACION DE LA CUENTA CORRIENTE");
+            System.out.print ("cantCheq: "); 
+            int cantCheq = in.nextInt();  
+            System.out.println("limite: "); 
+            int limite = in.nextInt(); 
+            
+            c = new CuentaCorriente ( alias,  CBU,  dinero, p, cantCheq, limite);
+        }
+        else 
+            if (TipoE.equals("AHORRO")){
+                System.out.println("INFORMACION DE LA CUENTA DE AHORRO");
+                System.out.print ("plazoF: "); 
+                boolean plazoF = in.nextBoolean(); 
+                System.out.print ("cant tarjetas: ");
+                int tarjetas = in.nextInt();
+                
+                cA = new CajaAhorro (  alias,  CBU,  dinero, p, plazoF,  tarjetas);
+                System.out.print ("ingrese ultimas 5 transacciones: ");
+                for (int i=0;i<5;i++){
+                    System.out.println ("concepto: "); 
+                    String concepto = in.next(); 
+                    System.out.println ("monto: ");
+                    double monto = in.nextDouble();
+                    cA.agregarTrans(concepto, monto);             // arreglado
+                }
+                c=cA;
+            }
+        
+        return c;    /*devuelvo el objeto ejemplar*/
+    }
+}  
+
+ 
+
+

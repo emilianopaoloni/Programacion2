@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=MateriaAprobada
+comment1.params=codigo\ semestre\ alumno
+comment1.target=MateriaAprobada(java.lang.String,\ java.lang.String,\ Alumno)
+comment10.params=nota
+comment10.target=void\ agregarAutoevaluacion(double)
+comment11.params=
+comment11.target=java.lang.String\ toString()
+comment2.params=
+comment2.target=MateriaAprobada()
+comment3.params=
+comment3.target=java.lang.String\ getSemestre()
+comment4.params=
+comment4.target=Alumno\ getAlumno()
+comment5.params=
+comment5.target=java.lang.String\ getCodigo()
+comment6.params=semestre
+comment6.target=void\ setSemestre(java.lang.String)
+comment7.params=alumno
+comment7.target=void\ setAlumno(Alumno)
+comment8.params=codigo
+comment8.target=void\ setCodigo(java.lang.String)
+comment9.params=
+comment9.target=double\ calcularPromedio()
+numComments=12

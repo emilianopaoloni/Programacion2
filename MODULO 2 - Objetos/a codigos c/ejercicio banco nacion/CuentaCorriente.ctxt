@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=CuentaCorriente
+comment1.params=nroCuenta\ alias\ cbu\ dinero\ propietario\ limite\ cheques
+comment1.target=CuentaCorriente(int,\ java.lang.String,\ int,\ double,\ Propietario,\ double,\ int)
+comment2.params=
+comment2.target=CuentaCorriente()
+comment3.params=
+comment3.target=double\ getLimite()
+comment4.params=
+comment4.target=int\ getcheques()
+comment5.params=limite
+comment5.target=void\ setlimite(double)
+comment6.params=cheques
+comment6.target=void\ setcheques(int)
+comment7.params=
+comment7.target=double\ calcularImpuesto()
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9
